@@ -1,0 +1,128 @@
+---
+title: "Homework 3" 
+author: "Zabih Yousuf"
+fontsize: 12pt
+geometry: margin=1in
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, highlight=FALSE)
+```
+
+## Problem 1   
+```{r}
+data1 <- read.csv("Homework 3 Data 1.csv", header = TRUE)
+data2 <- read.csv("Homework 3 Data 2.csv", header = TRUE)
+data3 <- read.csv("Homework 3 Data 3.csv", header = TRUE)
+data4 <- read.csv("Homework 3 Data 4.csv", header = TRUE)
+data5 <- read.csv("Homework 3 Data 5.csv", header = TRUE)
+data6 <- read.csv("Homework 3 Data 6.csv", header = TRUE)
+data7 <- read.csv("Homework 3 Data 7.csv", header = TRUE)
+data8 <- read.csv("Homework 3 Data 8.csv", header = TRUE)
+```
+
+## Problem 2
+### Part (A)
+```{r}
+int_rev <- rbind(data1, data3)
+
+int_rev
+```
+
+### Part (B)
+```{r}
+names(data2) <- names(data4)
+us_rev <- rbind(data2, data4)
+
+us_rev
+```
+
+### Part (C)
+```{r}
+names(data7) <- names(data5)
+int_mem <- rbind(data5, data7)
+
+int_mem
+```
+
+### Part (D)
+```{r}
+names(data8) <- names(data6)
+data8[20,2] <- 'Q4'
+
+us_mem <- rbind(data6, data8)
+us_mem
+```
+
+## Problem 3
+### Part (A)
+```{r}
+rev_wide <- merge(int_rev,us_rev,by=c("Year", "Quarter"), all = TRUE)
+names(rev_wide) <- c("Year", "Quarter", "Int.revenue", "US.revenue")
+
+rev_wide
+```
+
+### Part (B)
+```{r}
+mem_wide <- merge(int_mem, us_mem, by=c("Year", "Quarter"), all = TRUE)
+names(mem_wide) <- c("Year", "Quarter", "Int.membership", "US.membership")
+
+mem_wide
+```
+
+### Part (C)
+```{r}
+stream_wide <- merge(rev_wide,mem_wide, all = TRUE)[,c(1,2,6,4,5,3)]
+names(stream_wide) <- c("Year","Quarter", "US.membership", "US.revenue", "Int.membership", "Int.revenue")
+
+stream_wide
+```
+
+## Problem 4
+### Part (A)
+```{r}
+int_mem$Service <- rep('Int', length(int_mem[1]))
+int_mem
+
+int_rev$Service <- rep('Int', length(int_rev[1]))
+int_rev
+```
+
+### Part (B)
+```{r}
+us_rev$Service <- rep('US', length(us_rev[1]))
+us_rev
+
+us_mem$Service <- rep('US', length(us_mem[1]))
+us_mem
+```
+
+### Part (C)
+```{r}
+rev_long <- rbind(int_rev, us_rev)[,c(1,2,4,3)]
+names(rev_long)<- c("Year", "Quarter", "Service", "Revenue")
+
+rev_long
+```
+
+### Part (D)
+```{r}
+mem_long <- rbind(int_mem, us_mem)[,c(1,2,4,3)]
+names(rev_long) <- c("Year", "Quarter", "Service", "Membership")
+
+mem_long
+```
+
+### Part (E)
+```{r}
+stream_long <- merge(rev_long, mem_long, by=c("Year", "Quarter", "Service"), all = TRUE)
+names(stream_long) <- c("Year", "Quarter", "Service", "Membership", "Revenue")
+
+stream_long
+```
+
+## Problem 5
+
+In my opinion the wide format is easier to work with and read simply because it is easier to find information and understand what the data means. The main difference between the two is the number of columns and rows. The wide format has more columns however the rows on the long format are more than the ones on the wide format. 

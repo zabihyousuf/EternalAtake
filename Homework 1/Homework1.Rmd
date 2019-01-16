@@ -1,0 +1,108 @@
+---
+title: "Homework 1" 
+author: "Zabih Yousuf"
+fontsize: 12pt
+geometry: margin=1in
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, highlight=FALSE)
+```
+
+## Problem 1   
+```{r}
+
+```
+// 1. This variable does not work because R does not allow a variable to start with a number.
+
+// 2. A period is allowed in the beginning of variables but since the period is followed by a number, it is not allowed. 
+
+// 4. Leading underscores are not allowed in R.
+
+// 6. This variable contains a space which the complier reads as the variable name is now just the number so it will assign the value to simply the number which will result in a crash. 
+
+// 7. Having parenthesis will make R think you are declaring a function and functions cannot be assigned a variable.
+
+
+
+## Problem 2
+### Part A
+```{r}
+553.9/51.3
+```
+
+### Part B
+```{r}
+floor(533.9/51.3)
+```
+
+### Part C
+```{r}
+(553.9/679.4)*100
+
+```
+
+### Part D
+```{r}
+Q2 <- (559.9/608.8)*100
+sprintf("Q2 Profit: %s", Q2)
+Q3 <- (553.9/679.4)*100
+sprintf("Q3 Profit: %s", Q3)
+
+if(Q2 - Q3 != 0){
+print ("Yes")
+}
+```
+
+### Part E
+```{r}
+Q2 <- (559.9/608.8)*100
+Q3 <- (553.9/679.4)*100
+Q2-Q3
+
+```
+
+### Part F
+```{r}
+107.5-51.3
+
+```
+
+## Problem 3
+### Part A
+```{r}
+vecA <- rep("Q1",times=4)
+vecA
+```
+
+### Part B
+```{r}
+vecB <- seq(from = 50.0,to = 100.0,by = 2.5)
+vecB
+```
+
+### Part C
+```{r}
+vecC <- rep(2010:2017, each=4)
+vecC
+```
+
+### Part D
+```{r}
+vecD <- rep(2016:2017, c(4,3))
+vecD
+```
+
+### Part E
+```{r}
+vecE <- rep(1295:1300)
+vecE2 <- seq(from = 1299, to = 1290, by = -1)
+c(vecE,vecE2)
+```
+
+### Part F
+```{r}
+vecF <- seq(from = 4160,to = 3530,by = -105)
+vecF
+```

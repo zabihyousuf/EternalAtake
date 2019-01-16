@@ -1,0 +1,81 @@
+---
+title: "Homework 2" 
+author: "Zabih Yousuf"
+fontsize: 12pt
+geometry: margin=1in
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, highlight=FALSE)
+```
+
+## Problem 1   
+### Part A
+```{r}
+Netflix <- read.table("Homework 2 Data 1.txt", sep = "\t", fill = TRUE) #
+```
+
+### Part B
+```{r}
+Netflix
+```
+
+### Part c
+```{r}
+names(Netflix) <- c("Year","Quarter","US Streaming","Int.Stream", "All.Rev")
+```
+
+### Part D
+```{r}
+usStreaming <- is.na(Netflix[3])
+```
+
+### Part E
+```{r}
+Netflix[usStreaming,][2:3]
+```
+
+### Part F
+```{r}
+table(Netflix[usStreaming,][1:2])
+```
+
+## Problem 2
+### Part A
+```{r}
+Netflix <- read.csv("Homework 2 Data 2.csv")
+Netflix
+```
+
+### Part B
+```{r}
+remCumu <- Netflix[c(-4,-6)]
+
+```
+
+### Part C
+```{r}
+remCumu[order(remCumu),][3:4]
+```
+Yes there is a positive relationship between the two variables. There is an instance where the marketing values decrease but the revenue goes up however the majority of the values under the revenue variable increase when we sort the values from least to greatest. 
+
+### Part D
+```{r}
+lastQuarter <- subset(Netflix, Quarter == 'Q4', select = c(1,4,6))
+```
+
+### Part E
+```{r}
+write.table(lastQuarter, "Homework 2 Out 2.txt", row.names = FALSE, quote = FALSE)
+```
+
+
+### Part F
+```{r}
+lastQuarter[order(lastQuarter$Cumulative.Marketing),]
+```
+Here there is a clear positive relationship between the two variables. As marketing values increase so does revenue. 
+
+### Part G
+We can conclude that the more money spent on marketing, the revenue for the year will also increase. 
